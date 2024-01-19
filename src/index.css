@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles.css */
+.rounded-table {
+    border-radius: 0.5rem; /* Puedes ajustar el valor según tu preferencia */
+    overflow: hidden;
+  }
+  
