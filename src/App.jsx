@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
-import { Typography } from "@material-tailwind/react";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
 import Swal from "sweetalert2";
@@ -87,6 +86,7 @@ function App() {
             showConfirmButton: false,
             timer: 1500,
           });
+          setForm(initialForm);
         });
       } else {
         Swal.fire("Changes are not saved", "", "info");
@@ -116,6 +116,7 @@ function App() {
         <div className="mt-10">
           <Table empleados={empleados} setForm={setForm} eliminar={eliminar} />
         </div>
+        {/* <Button onClick={() => {console.log(import.meta.env.VITE_USER, import.meta.env.VITE_PASS, import.meta.env.VITE_HOST, import.meta.env.VITE_NAME)}}>LOG</Button> */}
       </div>
     </>
   );

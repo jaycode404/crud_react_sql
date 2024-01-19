@@ -1,19 +1,19 @@
+// server.js (lado del servidor - Node.js)
 const express = require("express");
 const app = express();
-
 const mysql = require("mysql2");
 const cors = require("cors");
+require("dotenv").config(); 
+
 app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "crud_react",
+  host: process.env.HOST, // Usa process.env para acceder a las variables de entorno del servidor
+  user: process.env.USER,
+  password: process.env.PASS,
+  database: process.env.NAME,
 });
-
-//METODOS
 
 //GET
 app.get("/empleados", (req, res) => {
@@ -79,5 +79,5 @@ app.delete("/delete/:id", (req, res) => {
 });
 
 app.listen(4001, () => {
-  console.log("conectado al puerto 4001");
+  console.log("conectado al puerto 4001", process.env.NAME);
 });
