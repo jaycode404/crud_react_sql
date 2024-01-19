@@ -9,10 +9,10 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: process.env.HOST, // Usa process.env para acceder a las variables de entorno del servidor
-  user: process.env.USER,
-  password: process.env.PASS,
-  database: process.env.NAME,
+  host: process.env.VITE_HOST, 
+  user: process.env.VITE_USER,
+  password: process.env.VITE_PASS,
+  database: process.env.VITE_NAME,
 });
 
 //GET
@@ -79,5 +79,5 @@ app.delete("/delete/:id", (req, res) => {
 });
 
 app.listen(4001, () => {
-  console.log("conectado al puerto 4001", process.env.NAME);
+  console.log("conectado al puerto 4001", process.env.VITE_NAME);
 });

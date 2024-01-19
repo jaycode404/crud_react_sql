@@ -12,12 +12,11 @@ export function Form({ form, setForm, crear, actualizar, clearForm }) {
       ...form,
       [e.target.name]: e.target.value,
     });
-    console.log(form);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('enviando',form)
+    
 
     if (Object.values(form).some((value) => !value)) {
       Swal.fire({

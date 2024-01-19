@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
 import Swal from "sweetalert2";
+
 const initialForm = {
   nombre: "",
   edad: "",
@@ -10,7 +11,9 @@ const initialForm = {
   puesto: "",
 };
 
-const url = "http://localhost:4001";
+const deployUrl = import.meta.env.VITE_URL;
+const url = deployUrl;
+
 function App() {
   const [empleados, setEmpleados] = useState([]);
   const [form, setForm] = useState(initialForm);
@@ -116,7 +119,6 @@ function App() {
         <div className="mt-10">
           <Table empleados={empleados} setForm={setForm} eliminar={eliminar} />
         </div>
-        {/* <Button onClick={() => {console.log(import.meta.env.VITE_USER, import.meta.env.VITE_PASS, import.meta.env.VITE_HOST, import.meta.env.VITE_NAME)}}>LOG</Button> */}
       </div>
     </>
   );
