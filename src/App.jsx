@@ -15,6 +15,7 @@ const deployUrl = import.meta.env.VITE_URL;
 const url = deployUrl;
 
 function App() {
+  console.log(url)
   const [empleados, setEmpleados] = useState([]);
   const [form, setForm] = useState(initialForm);
 
