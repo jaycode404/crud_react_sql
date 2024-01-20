@@ -22,7 +22,7 @@ function App() {
   //GET
   const getEmpleados = async () => {
     try {
-      const response = await Axios.get(`${url}/empleados`);
+      const response = await Axios.get(`${url}/empleados`, { withCredentials: true });
       const data = response.data;
       setEmpleados(data);
       // console.log(data);
