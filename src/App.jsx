@@ -22,26 +22,14 @@ function App() {
   //GET
   const getEmpleados = async () => {
     try {
-      const response = await fetch(`${url}/empleados`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          // Otros encabezados que puedan ser necesarios
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      const data = await response.json();
+      const response = await Axios.get(`${url}/empleados`);
+      const data = response.data;
       setEmpleados(data);
+      // console.log(data);
     } catch (error) {
-      console.error('Error during fetch operation:', error);
+      console.log(error);
     }
   };
-  
 
   //POST
   const crear = async (form) => {
