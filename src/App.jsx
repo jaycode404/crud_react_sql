@@ -15,26 +15,21 @@ const deployUrl = import.meta.env.VITE_URL;
 const url = deployUrl;
 
 function App() {
-  console.log(url)
+  console.log(url);
   const [empleados, setEmpleados] = useState([]);
   const [form, setForm] = useState(initialForm);
 
   //GET
   const getEmpleados = async () => {
     try {
-      const response = await fetch(`${url}/empleados`, { credentials: 'include' });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      const data = await response.json();
+      const response = await Axios.get(`${url}/empleados`);
+      const data = response.data;
       setEmpleados(data);
+      // console.log(data);
     } catch (error) {
-      console.error('Error during fetch operation:', error);
+      console.log(error);
     }
   };
-  
 
   //POST
   const crear = async (form) => {
