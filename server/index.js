@@ -3,17 +3,14 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
-require("dotenv").config(); 
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
-  host: process.env.VITE_HOST, 
-  user: process.env.VITE_USER,
-  password: process.env.VITE_PASS,
-  database: process.env.VITE_NAME,
-});
+const urlDataBase = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
+
+const db = mysql.createConnection(urlDataBase);
 
 //GET
 app.get("/empleados", (req, res) => {
