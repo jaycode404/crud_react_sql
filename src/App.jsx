@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Axios from "axios";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
 import Swal from "sweetalert2";
@@ -19,13 +18,21 @@ function App() {
   const [empleados, setEmpleados] = useState([]);
   const [form, setForm] = useState(initialForm);
 
+  // Utilidad para manejar errores
+  const handleErrors = (response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response;
+  };
+
   //GET
   const getEmpleados = async () => {
     try {
-      const response = await Axios.get(`${url}/empleados`);
-      const data = response.data;
+      const response = await fetch(`${url}/empleados`);
+      handleErrors(response);
+      const data = await response.json();
       setEmpleados(data);
-      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -34,8 +41,15 @@ function App() {
   //POST
   const crear = async (form) => {
     try {
-      const respuesta = await Axios.post(`${url}/crear`, form);
-      const data = await respuesta.data;
+      const response = await fetch(`${url}/crear`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      handleErrors(response);
+      const data = await response.json();
       setEmpleados([data]);
       Swal.fire({
         position: "center",
@@ -54,8 +68,15 @@ function App() {
   //PUT
   const actualizar = async (form) => {
     try {
-      const respuesta = await Axios.put(`${url}/actualizar`, form);
-      const data = await respuesta.data;
+      const response = await fetch(`${url}/actualizar`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      handleErrors(response);
+      const data = await response.json();
       setEmpleados([data]);
       Swal.fire({
         position: "center",
@@ -81,17 +102,22 @@ function App() {
       confirmButtonColor: "red",
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`${url}/delete/${id}`).then(() => {
-          getEmpleados();
-          Swal.fire({
-            icon: "success",
-            position: "center",
-            title: `Usuario borrado!`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          setForm(initialForm);
-        });
+        fetch(`${url}/delete/${id}`, {
+          method: "DELETE",
+        })
+          .then(handleErrors)
+          .then(() => {
+            getEmpleados();
+            Swal.fire({
+              icon: "success",
+              position: "center",
+              title: `Usuario borrado!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            setForm(initialForm);
+          })
+          .catch((error) => console.log(error));
       } else {
         Swal.fire("Changes are not saved", "", "info");
       }
@@ -101,6 +127,7 @@ function App() {
   const clearForm = () => {
     setForm(initialForm);
   };
+  
   useEffect(() => {
     getEmpleados();
   }, []);
