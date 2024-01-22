@@ -8,7 +8,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const urlDataBase = `mysql://${process.env.VITE_USER}:${process.env.VITE_PASS}@${process.env.VITE_HOST}:${process.env.VITE_PORT}/${process.env.VITE_NAME}`;
+const urlDataBase = `mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
 const db = mysql.createConnection(urlDataBase);
 
@@ -75,6 +75,6 @@ app.delete("/delete/:id", (req, res) => {
   });
 });
 
-app.listen(3000 || `${process.env.PORT}`, () => {
-  console.log(`conectado al puerto ${process.env.VITE_PORT}`);
+app.listen(3000 || `${process.env.DB_PORT}`, () => {
+  console.log(`conectado al puerto ${process.env.DB_PORT}`);
 });
