@@ -75,6 +75,7 @@ app.delete("/delete/:id", (req, res) => {
   });
 });
 
-app.listen(3000 || `${process.env.DB_PORT}`, () => {
-  console.log(`conectado al puerto ${process.env.DB_PORT}`);
+app.listen(process.env.DB_PORT || 3000, () => {
+  console.log(`conectado al puerto ${process.env.DB_PORT || 3000}`);
 });
+
