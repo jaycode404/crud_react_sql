@@ -1,14 +1,14 @@
 // server.js (lado del servidor - Node.js)
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const mysql = require("mysql2");
-//const cors = require("cors");
-require("dotenv").config();
+const cors = require("cors");
 
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 
-const urlDataBase = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST ? process.env.MYSQLHOST : '0.0.0.0'}:${process.env.MYSQLPORT ? process.env.MYSQLPORT : 3000}/${process.env.MYSQLDATABASE}`;
+const urlDataBase = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
 
 const db = mysql.createConnection(urlDataBase);
 
@@ -75,6 +75,6 @@ app.delete("/delete/:id", (req, res) => {
   });
 });
 
-app.listen(`${process.env.MYSQLPORT}`,  () => {
+app.listen(3000 || `${process.env.MYSQLPORT}`, () => {
   console.log(`conectado al puerto ${process.env.MYSQLPORT}`);
 });
