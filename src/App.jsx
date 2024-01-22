@@ -18,14 +18,21 @@ function App() {
   const [empleados, setEmpleados] = useState([]);
   const [form, setForm] = useState(initialForm);
 
+  // Utilidad para manejar errores
+  const handleErrors = (response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response;
+  };
+
   //GET
   const getEmpleados = async () => {
     try {
-      const response = await fetch(`${url}/empleados`, {
-        mode: 'no-cors',
-      });
-      // En modo no-cors, no puedes acceder directamente al cuerpo de la respuesta.
-      console.log('Solicitud GET realizada con éxito en modo no-cors');
+      const response = await fetch(`${url}/empleados`);
+      handleErrors(response);
+      const data = await response.json();
+      setEmpleados(data);
     } catch (error) {
       console.log(error);
     }
@@ -36,14 +43,22 @@ function App() {
     try {
       const response = await fetch(`${url}/crear`, {
         method: "POST",
-        mode: 'no-cors',
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
       });
-      // En modo no-cors, no puedes acceder directamente al cuerpo de la respuesta.
-      console.log('Solicitud POST realizada con éxito en modo no-cors');
+      handleErrors(response);
+      const data = await response.json();
+      setEmpleados([data]);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Usuario ${form.nombre} creado!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setForm(initialForm);
     } catch (error) {
       console.log(error);
     }
@@ -55,14 +70,22 @@ function App() {
     try {
       const response = await fetch(`${url}/actualizar`, {
         method: "PUT",
-        mode: 'no-cors',
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
       });
-      // En modo no-cors, no puedes acceder directamente al cuerpo de la respuesta.
-      console.log('Solicitud PUT realizada con éxito en modo no-cors');
+      handleErrors(response);
+      const data = await response.json();
+      setEmpleados([data]);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Usuario ${form.nombre} actualizado!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setForm(initialForm);
     } catch (error) {
       console.log(error);
     }
@@ -81,10 +104,18 @@ function App() {
       if (result.isConfirmed) {
         fetch(`${url}/delete/${id}`, {
           method: "DELETE",
-          mode: 'no-cors',
         })
+          .then(handleErrors)
           .then(() => {
-            console.log('Solicitud DELETE realizada con éxito en modo no-cors');
+            getEmpleados();
+            Swal.fire({
+              icon: "success",
+              position: "center",
+              title: `Usuario borrado!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            setForm(initialForm);
           })
           .catch((error) => console.log(error));
       } else {
