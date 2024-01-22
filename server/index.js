@@ -2,10 +2,10 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
-const cors = require("cors");
+//const cors = require("cors");
 require("dotenv").config();
 
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 
 const urlDataBase = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
