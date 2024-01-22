@@ -76,5 +76,5 @@ app.delete("/delete/:id", (req, res) => {
 });
 
 app.listen(3000 || `${process.env.PORT}`, () => {
-  console.log(`conectado al puerto ${process.env.MYSQLPORT}`);
+  console.log(`conectado al puerto ${process.env.VITE_PORT}`);
 });
