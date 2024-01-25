@@ -10,9 +10,7 @@ const initialForm = {
   puesto: "",
 };
 
-
 const url = "https://crudreactsql-production.up.railway.app";
-
 
 function App() {
   console.log(url);
