@@ -10,7 +10,9 @@ const initialForm = {
   puesto: "",
 };
 
+
 const url = "https://crudreactsql-production.up.railway.app";
+
 
 function App() {
   console.log(url);
@@ -42,6 +44,9 @@ function App() {
     try {
       const response = await fetch(`${url}/crear`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(form),
       });
       handleErrors(response);
@@ -66,6 +71,9 @@ function App() {
     try {
       const response = await fetch(`${url}/actualizar`, {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(form),
       });
       handleErrors(response);
