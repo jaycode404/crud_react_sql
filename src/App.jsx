@@ -10,8 +10,8 @@ const initialForm = {
   puesto: "",
 };
 
-const deployUrl = import.meta.env.VITE_URL;
-const url = deployUrl;
+
+const url = "https://fullstack-deploy-production.up.railway.app";
 
 function App() {
   console.log(url);
@@ -127,7 +127,7 @@ function App() {
   const clearForm = () => {
     setForm(initialForm);
   };
-  
+
   useEffect(() => {
     getEmpleados();
   }, []);
