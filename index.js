@@ -5,7 +5,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://starlit-duckanoo-adb71a.netlify.app",
+    origin: "https://starlit-duckanoo-adb71a.netlify.app", 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
@@ -29,6 +29,7 @@ const pool = createPool({
 });
 
 const iniciarServidor = async () => {
+ 
   try {
     // Obtener una conexión del pool
     const connection = await pool.getConnection();
