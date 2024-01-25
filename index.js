@@ -5,11 +5,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://starlit-duckanoo-adb71a.netlify.app",
-      "https://starlit-duckanoo-adb71a.netlify.app/crear",
-      "https://starlit-duckanoo-adb71a.netlify.app/actualizar",
-    ],
+    origin: "https://starlit-duckanoo-adb71a.netlify.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
