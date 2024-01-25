@@ -11,7 +11,8 @@ const initialForm = {
 };
 
 
-const url = "https://fullstack-deploy-production.up.railway.app";
+const url = "https://crudreactsql-production.up.railway.app";
+
 
 function App() {
   console.log(url);
