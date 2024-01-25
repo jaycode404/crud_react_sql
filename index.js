@@ -2,7 +2,6 @@ import express from "express";
 import { createPool } from "mysql2/promise";
 import cors from "cors";
 const app = express();
-app.use(express.json());
 
 app.use(
   cors({
@@ -20,7 +19,6 @@ const DB_PASSWORD = process.env.DB_PASSWORD || "root";
 const DB_NAME = process.env.DB_NAME || "crud_react";
 const DB_PORT = process.env.DB_PORT || "3306";
 
-// Cambié createConnection a createPool para mejorar la gestión de conexiones
 const pool = createPool({
   host: DB_HOST,
   user: DB_USER,
@@ -30,8 +28,17 @@ const pool = createPool({
   connectionLimit: 10,
 });
 
-// Cambié a una función asíncrona para usar async/await
 const iniciarServidor = async () => {
+  const app = express();
+
+  app.use(
+    cors({
+      origin: "https://starlit-duckanoo-adb71a.netlify.app",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true,
+    })
+  );
+
   try {
     // Obtener una conexión del pool
     const connection = await pool.getConnection();
