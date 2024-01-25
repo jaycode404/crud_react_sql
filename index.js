@@ -6,7 +6,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://empleadoscurd.netlify.app",
+    origin: "https://starlit-duckanoo-adb71a.netlify.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
