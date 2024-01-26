@@ -40,7 +40,7 @@ function App() {
   //POST
   const crear = async (form) => {
     try {
-      const response = await fetch(`${url}/empleados`, {
+      const response = await fetch(`${url}/crear`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ function App() {
   //PUT
   const actualizar = async (form) => {
     try {
-      const response = await fetch(`${url}/empleados`, {
+      const response = await fetch(`${url}/actualizar`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

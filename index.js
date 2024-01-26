@@ -49,8 +49,9 @@ const iniciarServidor = async () => {
     });
 
     //POST
-    app.post("/empleados", async (req, res) => {
+    app.post("/crear", async (req, res) => {
       const { nombre, edad, pais, puesto } = req.body;
+
       try {
         const [result] = await connection.query(
           "INSERT INTO empleados (nombre, edad, pais, puesto) VALUES (?, ?, ?, ?)",
@@ -66,7 +67,7 @@ const iniciarServidor = async () => {
     });
 
     //PUT
-    app.put("/empleados", async (req, res) => {
+    app.put("/actualizar", async (req, res) => {
       const { nombre, edad, pais, puesto, id } = req.body;
 
       try {
