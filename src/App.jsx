@@ -40,11 +40,12 @@ function App() {
   //POST
   const crear = async (form) => {
     try {
-      const response = await fetch(`${url}/crear`, {
+      const response = await fetch(`${url}/empleados`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://starlit-duckanoo-adb71a.netlify.app/crear"
+          "Access-Control-Allow-Origin":
+            "https://starlit-duckanoo-adb71a.netlify.app/crear",
         },
         body: JSON.stringify(form),
       });
@@ -63,12 +64,12 @@ function App() {
       console.log(error);
     }
     getEmpleados();
-};
+  };
 
   //PUT
   const actualizar = async (form) => {
     try {
-      const response = await fetch(`${url}/actualizar`, {
+      const response = await fetch(`${url}/empleados`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

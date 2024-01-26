@@ -49,7 +49,7 @@ const iniciarServidor = async () => {
     });
 
     //POST
-    app.post("/crear", async (req, res) => {
+    app.post("/empleados", async (req, res) => {
       const { nombre, edad, pais, puesto } = req.body;
 
       try {
@@ -67,7 +67,7 @@ const iniciarServidor = async () => {
     });
 
     //PUT
-    app.put("/actualizar", async (req, res) => {
+    app.put("/empleados", async (req, res) => {
       const { nombre, edad, pais, puesto, id } = req.body;
 
       try {
