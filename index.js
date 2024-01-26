@@ -1,15 +1,7 @@
 import express from "express";
 import { createPool } from "mysql2/promise";
 import cors from "cors";
-const app = express();
 
-app.use(
-  cors({
-    origin: "https://starlit-duckanoo-adb71a.netlify.app", 
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
 
 const PORT = process.env.PORT || 3000;
 
@@ -29,6 +21,15 @@ const pool = createPool({
 });
 
 const iniciarServidor = async () => {
+  const app = express();
+
+app.use(
+  cors({
+    origin: "https://starlit-duckanoo-adb71a.netlify.app",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
  
   try {
     // Obtener una conexión del pool
@@ -49,7 +50,7 @@ const iniciarServidor = async () => {
     });
 
     //POST
-    app.get("/crear", async (req, res) => {
+    app.post("/crear", async (req, res) => {
       const { nombre, edad, pais, puesto } = req.body;
 
       try {
