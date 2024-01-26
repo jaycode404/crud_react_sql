@@ -120,7 +120,7 @@ function App() {
           })
           .catch((error) => console.log(error));
       } else {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire("Operación cancelada..", "", "info");
       }
     });
   };
