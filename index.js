@@ -10,7 +10,7 @@ app.use(
     credentials: true,
   })
 );
- 
+
 const PORT = process.env.PORT || 3000;
 
 const DB_HOST = process.env.DB_HOST || "localhost";
@@ -29,7 +29,6 @@ const pool = createPool({
 });
 
 const iniciarServidor = async () => {
- 
   try {
     // Obtener una conexión del pool
     const connection = await pool.getConnection();
@@ -50,19 +49,20 @@ const iniciarServidor = async () => {
 
     //POST
     app.post("/crear", async (req, res) => {
-      const { nombre, edad, pais, puesto } = req.body;
-      try {
-        const [result] = await connection.query(
-          "INSERT INTO empleados (nombre, edad, pais, puesto) VALUES (?, ?, ?, ?)",
-          [nombre, edad, pais, puesto]
-        );
-        res.status(200).send(result);
-      } catch (err) {
-        console.log("Hubo un error SQL", err);
-        res.status(500).send("Error creando empleado");
-      } finally {
-        connection.release();
-      }
+      console.log('creando objeto');
+      //   const { nombre, edad, pais, puesto } = req.body;
+      //   try {
+      //     const [result] = await connection.query(
+      //       "INSERT INTO empleados (nombre, edad, pais, puesto) VALUES (?, ?, ?, ?)",
+      //       [nombre, edad, pais, puesto]
+      //     );
+      //     res.status(200).send(result);
+      //   } catch (err) {
+      //     console.log("Hubo un error SQL", err);
+      //     res.status(500).send("Error creando empleado");
+      //   } finally {
+      //     connection.release();
+      //   }
     });
 
     //PUT
