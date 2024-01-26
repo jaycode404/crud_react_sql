@@ -44,7 +44,7 @@ function App() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          
+          "Access-Control-Allow-Origin": "https://starlit-duckanoo-adb71a.netlify.app/crear"
         },
         body: JSON.stringify(form),
       });
@@ -63,7 +63,7 @@ function App() {
       console.log(error);
     }
     getEmpleados();
-  };
+};
 
   //PUT
   const actualizar = async (form) => {

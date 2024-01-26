@@ -51,7 +51,6 @@ const iniciarServidor = async () => {
     //POST
     app.post("/crear", async (req, res) => {
       const { nombre, edad, pais, puesto } = req.body;
-
       try {
         const [result] = await connection.query(
           "INSERT INTO empleados (nombre, edad, pais, puesto) VALUES (?, ?, ?, ?)",
