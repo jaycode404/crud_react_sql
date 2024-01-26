@@ -2,7 +2,6 @@ import express from "express";
 import { createPool } from "mysql2/promise";
 import cors from "cors";
 const app = express();
-app.use(express.json());
 
 app.use(
   cors({
