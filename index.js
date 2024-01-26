@@ -49,7 +49,7 @@ const iniciarServidor = async () => {
     });
 
     //POST
-    app.post("/crear", async (req, res) => {
+    app.get("/crear", async (req, res) => {
       const { nombre, edad, pais, puesto } = req.body;
 
       try {
