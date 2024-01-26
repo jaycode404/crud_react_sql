@@ -40,7 +40,7 @@ function App() {
   //POST
   const crear = async (form) => {
     try {
-      const response = await fetch(`${url}/crear`, {
+      const response = await fetch(`${url}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
