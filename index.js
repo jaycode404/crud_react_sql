@@ -2,7 +2,7 @@ import express from "express";
 import { createPool } from "mysql2/promise";
 import cors from "cors";
 const app = express();
-app.use(express.json())
+// app.use(express.json())
 app.use(
   cors({
     origin: "https://starlit-duckanoo-adb71a.netlify.app",
