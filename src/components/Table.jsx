@@ -4,7 +4,7 @@ const TABLE_HEAD = ["Nombre", "Edad", "Pais", "Puesto", "Opciones"];
 
 export function Table({ empleados, setForm, eliminar }) {
   return (
-    <Card className="h-auto w-[100%] rounded-table">
+    <Card className="min-w-10 h-auto w-[100%] rounded-table">
       <table className="w-full min-w-max table-auto text-left ">
         <thead>
           <tr>
